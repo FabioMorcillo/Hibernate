@@ -1,7 +1,7 @@
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.Configuration;
 
 import domain.Department;
 
@@ -9,10 +9,7 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-		AnnotationConfiguration configuration = new AnnotationConfiguration();
-	    configuration.configure();
-	     
-	    SessionFactory factory = configuration.buildSessionFactory();
+	    SessionFactory factory = new Configuration().configure().buildSessionFactory();
 	    Session session = factory.openSession();
 
 	    Department department = new Department();
