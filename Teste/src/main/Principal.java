@@ -1,4 +1,6 @@
 package main;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,6 +35,13 @@ public class Principal {
 	    Usuario usuario4 = new Usuario("Michelle");
 	    Usuario usuario5 = new Usuario("Joao");
 
+	    usuario1.setSetor(setor5);
+	    usuario2.setSetor(setor5);
+	    usuario3.setSetor(setor5);
+	    usuario4.setSetor(setor5);
+	    usuario5.setSetor(setor5);
+	    
+	    /*
 	    Transaction tx = session.beginTransaction();
 	    
 	    session.save(setor1);
@@ -46,8 +55,33 @@ public class Principal {
 	    session.save(usuario3);
 	    session.save(usuario4);
 	    session.save(usuario5);
-    
+	    
 	    tx.commit();
+*/
+	    List<Setor> listaSetor = (List<Setor>) session.createCriteria(Setor.class).list();
+	    
+	    List<Usuario> listaUsuario;
+	    
+	    for (Setor setor : listaSetor)
+	    {
+	    	System.out.println("Setor -> " + setor.getNome());
+
+	    	listaUsuario = setor.getUsuarios();
+	    	
+	    	if ( listaUsuario != null )
+	    	{
+	    		for ( Usuario usuario : listaUsuario )
+	    		{
+	    			System.out.println("\t" + usuario.getNome());
+	    		}
+	    	}
+	    	else
+	    	{
+	    		System.out.println("\tSem Usuarios...");
+	    	}
+	    }
+	    
+	    sessionfactory.close();
 	}
 
 }
