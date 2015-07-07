@@ -11,19 +11,34 @@ public class Principal4 {
 
 	public static void main(String[] args) 
 	{
-		Configuration configuration = new Configuration();
-		configuration.configure();
-		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-		configuration.getProperties()).build();
-
-		SessionFactory session = new Configuration().configure().buildSessionFactory(serviceRegistry);
+		Configuration configuration = new Configuration().configure();
 		
+		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+
+	    SessionFactory sessionfactory = configuration.buildSessionFactory(serviceRegistry);
+
+	    Session session = sessionfactory.openSession();
+
 		Department department = new Department();
 	    department.setName("Teste 1");
 
 	    Transaction tx = session.beginTransaction();
+	    
 	    session.save(department);
+	    
 	    tx.commit();
 	}
 
 }
+
+
+/*
+ * SITES INTERESSANTES 
+ *
+  
+  http://www.beingjavaguys.com/2014/05/spring4-hibernate4-integration.html
+  http://websystique.com/springmvc/spring-4-mvc-and-hibernate4-integration-example-using-annotations/
+  http://www.guj.com.br/8582-hibernate--postgresql--demora-em-sessionbegintransaction
+  http://javafree.uol.com.br/topic-888893-Persistencia-com-Hibernate.html
+  
+*/
