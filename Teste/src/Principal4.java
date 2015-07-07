@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import domain.Department;
+import domain.User;
 
 public class Principal4 {
 
@@ -21,10 +22,13 @@ public class Principal4 {
 
 		Department department = new Department();
 	    department.setName("Teste 1");
+	    
+	    User user = new User("Fabio");
 
 	    Transaction tx = session.beginTransaction();
 	    
 	    session.save(department);
+	    session.save(user);
 	    
 	    tx.commit();
 	}

@@ -18,6 +18,7 @@
 
     <!-- entidades -->
     <mapping class="domain.Department" />
+    <mapping class="domain.User" />
 
 
   </session-factory>
