@@ -12,6 +12,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import domain.Estado;
 import domain.Setor;
 import domain.Usuario;
 
@@ -39,15 +40,36 @@ public class Principal {
 	    Usuario usuario4 = new Usuario("Michelle");
 	    Usuario usuario5 = new Usuario("Joao");
 
+	    Estado estado1 = new Estado("Estado 1");
+	    Estado estado2 = new Estado("Estado 2");
+	    Estado estado3 = new Estado("Estado 3");
+	    Estado estado4 = new Estado("Estado 4");
+	    Estado estado5 = new Estado("Estado 5");
+	    
 	    usuario1.setSetor(setor5);
 	    usuario2.setSetor(setor5);
 	    usuario3.setSetor(setor5);
 	    usuario4.setSetor(setor5);
 	    usuario5.setSetor(setor5);
 	    
-	    /*
+	    Set<Estado> estados = new HashSet<Estado>();
 	    
+	    estados.add(estado1);
+	    estados.add(estado2);
+	    estados.add(estado3);
+	    estados.add(estado4);
+	    estados.add(estado5);
+	    
+	    usuario1.setEstados( estados );
+	    
+	    /*
 	    Transaction tx = session.beginTransaction();
+	    
+	    session.save(estado1);
+	    session.save(estado2);
+	    session.save(estado3);
+	    session.save(estado4);
+	    session.save(estado5);
 	    
 	    session.save(setor1);
 	    session.save(setor2);
@@ -79,6 +101,7 @@ public class Principal {
 	    Set<Setor> setSetor = new HashSet<Setor>(listaSetor);
 	    
 	    Set<Usuario> listaUsuario;
+	    Set<Estado> listaEstado;
 	    
 	    for (Setor setor : setSetor)
 	    {
@@ -91,6 +114,13 @@ public class Principal {
 	    		for ( Usuario usuario : listaUsuario )
 	    		{
 	    			System.out.println("\t" + usuario.getNome());
+	    			
+	    			listaEstado = usuario.getEstados();
+	    			
+	    			for ( Estado estado : listaEstado )
+		    		{
+		    			System.out.println("\t\t" + estado.getNome());
+		    		}
 	    		}
 	    	}
 	    	else

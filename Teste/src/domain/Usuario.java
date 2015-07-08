@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -24,6 +25,10 @@ public class Usuario // implements Serializable
 	
 	@ManyToOne(cascade = CascadeType.ALL)	
 	private Setor setor;	
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "estado_id")
+	private Set<Estado> estados;
 	
 	public Usuario()
 	{
@@ -57,6 +62,14 @@ public class Usuario // implements Serializable
 
 	public void setSetor(Setor setor) {
 		this.setor = setor;
+	}
+
+	public Set<Estado> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(Set<Estado> estados) {
+		this.estados = estados;
 	}
 
 	

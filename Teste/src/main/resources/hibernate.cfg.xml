@@ -34,6 +34,7 @@
     <!-- entidades -->
     <mapping class="domain.Setor" />
     <mapping class="domain.Usuario" />
+    <mapping class="domain.Estado" />
 
 
   </session-factory>
