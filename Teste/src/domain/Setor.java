@@ -2,12 +2,18 @@ package domain;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.Sort;
+import org.hibernate.annotations.SortType;
+
 @Entity
 @Table( name = "Setores" )
-public class Setor implements Serializable
+public class Setor // implements Serializable
 {
 	/**
 	 * 
@@ -23,7 +29,7 @@ public class Setor implements Serializable
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "setor_id")
-	private List<Usuario> usuarios;
+	private Set<Usuario> usuarios;
 	
 	public Setor()
 	{
@@ -51,11 +57,11 @@ public class Setor implements Serializable
 		this.nome = nome;
 	}
 
-	public List<Usuario> getUsuarios() {
+	public Set<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
+	public void setUsuarios(Set<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
 

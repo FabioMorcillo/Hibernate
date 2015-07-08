@@ -1,6 +1,10 @@
 package main;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -42,6 +46,7 @@ public class Principal {
 	    usuario5.setSetor(setor5);
 	    
 	    /*
+	    
 	    Transaction tx = session.beginTransaction();
 	    
 	    session.save(setor1);
@@ -57,12 +62,25 @@ public class Principal {
 	    session.save(usuario5);
 	    
 	    tx.commit();
-*/
-	    List<Setor> listaSetor = (List<Setor>) session.createCriteria(Setor.class).list();
 	    
-	    List<Usuario> listaUsuario;
+	    */
+
+	    /*
+	     * Primeira solução para remover os registros duplicados na root entity
+	     * 
+	    List<Setor> listaSetor = (List<Setor>) session.createCriteria(Setor.class)
+	    						.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+	    						.list();
+	    */
+
+	    List<Setor> listaSetor = (List<Setor>) session.createCriteria(Setor.class)
+				.list();
+
+	    Set<Setor> setSetor = new HashSet<Setor>(listaSetor);
 	    
-	    for (Setor setor : listaSetor)
+	    Set<Usuario> listaUsuario;
+	    
+	    for (Setor setor : setSetor)
 	    {
 	    	System.out.println("Setor -> " + setor.getNome());
 

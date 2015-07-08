@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table ( name="Usuarios" )
-public class Usuario implements Serializable
+public class Usuario // implements Serializable
 {
 	/**
 	 * 
@@ -16,6 +16,7 @@ public class Usuario implements Serializable
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
+	
 	private long id;
 	
 	@Column(name = "nome", length = 50, nullable = false)
